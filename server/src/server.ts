@@ -1,12 +1,19 @@
-import express from 'express';
+import express, { request, response } from 'express';
 
-//To create the app
 const app = express();
 
-//First route of our application
-//GET method => 'The address the user will be accessing', function that
-//will be executed when the user access the route ads
-//www.myapi.com/ads
+//HTTP methods / API RESTful
+
+app.get('/games', (request, response) => {
+  return response.json([]);
+});
+
+//criação de anúncio
+app.post('/ads', (request, response) => {
+  return response.status(201).json([]);
+});
+
+//listar anúncios de um game específico, não todos
 app.get('/ads', (request, response) => {
   return response.json([
     { id: 1, name: 'Anúncio' },
@@ -16,10 +23,4 @@ app.get('/ads', (request, response) => {
   ]);
 });
 
-//Nossa função precisa receber dois parametros (request, response):
-//request => busca dados relacionados à requisição;
-//response => devolver uma resposta
-
-//Nossa app vai estar rodando no localhost, então preciso colocar uma porta
-//para conseguir visualizar ela
 app.listen(3333);
