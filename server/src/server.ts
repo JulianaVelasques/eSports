@@ -1,11 +1,17 @@
 import express, { request, response } from 'express';
+import { PrismaClient } from '@prisma/client';
 
 const app = express();
+//vai fazer a conexão com o banco
+const prisma = new PrismaClient();
 
 //HTTP methods / API RESTful
 
-app.get('/games', (request, response) => {
-  return response.json([]);
+//findMany é um método assíncrono, então usar a síntaxe async / await
+app.get('/games', async (request, response) => {
+  const games = await prisma.game.findMany();
+
+  return response.json(games);
 });
 
 //criação de anúncio
