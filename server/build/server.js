@@ -1,17 +1,20 @@
 "use strict";
-exports.__esModule = true;
-var express_1 = require("express");
-var app = (0, express_1["default"])();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const app = express_1.default();
 //HTTP methods / API RESTful
-app.get('/games', function (request, response) {
+app.get('/games', (request, response) => {
     return response.json([]);
 });
 //criação de anúncio
-app.post('/ads', function (request, response) {
+app.post('/ads', (request, response) => {
     return response.status(201).json([]);
 });
 //listar anúncios de um game específico, não todos
-app.get('/games/:id/ads', function (request, response) {
+app.get('/games/:id/ads', (request, response) => {
     // const gameId = request.params.id;
     return response.json([
         { id: 1, name: 'Anúncio' },
@@ -21,7 +24,7 @@ app.get('/games/:id/ads', function (request, response) {
     ]);
 });
 //pegar de um ads específico um discord
-app.get('/ads/:id/discord', function (request, response) {
+app.get('/ads/:id/discord', (request, response) => {
     // const adId = request.params.id;
     return response.json([]);
 });
