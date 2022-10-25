@@ -7,14 +7,23 @@ import './styles/main.css';
 import logoImg from './assets/logo-nlw-esport.svg';
 import { CreatAddBanner } from './components/CreateAddBanner';
 
+interface Game {
+  id: string;
+  title: string;
+  bannerUrl: string;
+  _count: {
+    ads: number;
+  };
+}
+
 function App() {
   //Porque é uma lista estou iniciando com um array vazio
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:3333/games')
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => setGames(data));
   }, []);
 
   return (
@@ -26,10 +35,9 @@ function App() {
       </h1>
 
       <div className="grid grid-cols-6 gap-6 mt-16">
-        <GameBanner bannerUrl="/game-1.png" title="League of legends" adsCounts={5} />
-        <GameBanner bannerUrl="/game-2.png" title="Dota 2" adsCounts={2} />
-        <GameBanner bannerUrl="/game-3.png" title="Counter-Strike" adsCounts={5} />
-        <GameBanner bannerUrl="/game-4.png" title="APEX" adsCounts={5} />
+        {games.map((game) => {
+          return <GameBanner bannerUrl={game.bannerUrl} title={game.title} adsCounts={game._count.ads} />;
+        })}
       </div>
 
       <CreatAddBanner />
