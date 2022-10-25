@@ -8,6 +8,15 @@ import logoImg from './assets/logo-nlw-esport.svg';
 import { CreatAddBanner } from './components/CreateAddBanner';
 
 function App() {
+  //Porque é uma lista estou iniciando com um array vazio
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3333/games')
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, []);
+
   return (
     <div className="max-w-[1344px] mx-auto flex flex-col items-center my-20">
       <img src={logoImg} alt="" />
