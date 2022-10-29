@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { query } from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 //vai fazer a conexão com o banco
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({ log: ['query'] });
 
 //HTTP methods / API RESTful
 
