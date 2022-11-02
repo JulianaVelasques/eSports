@@ -13,6 +13,7 @@ import { GameParams } from '../../@types/navigation';
 
 import { Background } from '../../components/Background';
 import { Heading } from '../../components/Heading';
+import { DuoCard } from '../../components/DuoCard';
 
 export function Game() {
   const navigation = useNavigation();
@@ -39,6 +40,8 @@ export function Game() {
         <Image source={{ uri: game.bannerUrl }} style={styles.cover} resizeMode="cover" />
 
         <Heading title={game.title} subtitle="Conecte-se e comece a joga!" />
+
+        <DuoCard />
       </SafeAreaView>
     </Background>
   );
